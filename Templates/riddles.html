@@ -1,10 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block body_content %}
+    <h1>Provide a one-word answer for each riddle</h1>
+    <div class="form">
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.q1.label }}
+                {{ form.q1 }}
+                {% if form.q1.errors %}
+                    <div class="error">
+                        {% for error in form.q1.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <br>
+            {{ form.q2.label }}
+            {{ form.q2 }}
+            {% if form.q2.errors %}
+                    <div class="error">
+                        {% for error in form.q2.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <br>
+            {{ form.q3.label }}
+            {{ form.q3 }}
+            {% if form.q3.errors %}
+                    <div class="error">
+                        {% for error in form.q3.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <br>
+            <br>
+            {{ form.q4.label }}
+            {{ form.q4 }}
+            {% if form.q4.errors %}
+                    <div class="error">
+                        {% for error in form.q4.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <br>
+            <br>
+            {{ form.q5.label }}
+            {{ form.q5 }}
+            {% if form.q5.errors %}
+                    <div class="error">
+                        {% for error in form.q5.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                {{ form.submit }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
