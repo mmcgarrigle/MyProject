@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from flask_wtf import FlaskForm
 from forms import PostsForm
-
+from regforms import RegistrationForm
 
 app = Flask(__name__)
 
@@ -32,6 +32,15 @@ def home():
     return render_template('home.html', title='Home')
 
 
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(500), nullable=False, unique=True)
+    password = db.Column(db.String(500), nullable=False)
+
+    def __repr__(self):
+        return ''.join(['UserID: ', str(self.id), '\r\n', 'Email: ', self.email])
+
+
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
     form = RegistrationForm()
@@ -53,6 +62,24 @@ def about():
     return render_template('about.html', title='About')
 
 
+class Posts(db.Model):
+    userID = db.Column(db.Integer(), primary_key=True)
+    q1 = db.Column(db.String(10), nullable=False)
+    q2 = db.Column(db.String(10), nullable=False)
+    q3 = db.Column(db.String(10), nullable=False)
+    q4 = db.Column(db.String(10), nullable=False)
+    q5 = db.Column(db.String(10), nullable=False)
+
+    def __repr__(self):
+        return ''.join(
+            [
+                'Title: ' + self.title + '\n'
+                                         'Name: ' + self.f_name + ' ' + self.l_name + '\n'
+                                                                                      'Content: ' + self.content
+            ]
+        )
+
+
 @app.route('/riddles', methods=['GET', 'POST'])
 def riddles():
     form = PostsForm()
@@ -62,7 +89,7 @@ def riddles():
             q2=form.q2.data,
             q3=form.q3.data,
             q4=form.q4.data,
-            q5=form.q5.data,
+            q5=form.q5.data
         )
         db.session.add(post_data)
         db.session.commit()
