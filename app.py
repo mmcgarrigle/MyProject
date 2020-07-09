@@ -40,7 +40,7 @@ def home():
     return render_template('home.html', title='Home')
 
 
-class Users(db.Model,UserMixin):
+class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(500), nullable=False, unique=True)
     password = db.Column(db.String(500), nullable=False)
@@ -93,9 +93,11 @@ class Posts(db.Model):
     def __repr__(self):
         return ''.join(
             [
-                'Title: ' + self.title + '\n'
-                                         'Name: ' + self.f_name + ' ' + self.l_name + '\n'
-                                                                                      'Content: ' + self.content
+                'Answer1: ' + self.q1 + '\n'
+                'Answer2: ' + self.q2 + '\n'
+                'Answer3: ' + self.q3 + '\n'
+                'Answer4: ' + self.q4 + '\n'
+                'Answer5: ' + self.q5
             ]
         )
 
