@@ -1,14 +1,24 @@
 import bcrypt
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, request
 from flask import render_template
+from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from os import environ
+from os import environ, getenv
 from flask_wtf import FlaskForm
+from wtforms.validators import required
 from forms import PostsForm
+from loginforms import LoginForm
 from regforms import RegistrationForm
+from flask_login import LoginManager, current_user, login_user, UserMixin, logout_user, login_required
 
 app = Flask(__name__)
-
+db = SQLAlchemy(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+bcrypt = Bcrypt(app)
+db = SQLAlchemy(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -23,8 +33,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
                                         '/' + \
                                         environ.get('MYSQL_DB_NAME')
 
-db = SQLAlchemy(app)
-
 
 @app.route('/')
 @app.route('/home')
@@ -32,13 +40,30 @@ def home():
     return render_template('home.html', title='Home')
 
 
-class Users(db.Model):
+class Users(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(500), nullable=False, unique=True)
     password = db.Column(db.String(500), nullable=False)
 
     def __repr__(self):
         return ''.join(['UserID: ', str(self.id), '\r\n', 'Email: ', self.email])
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = Users.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            if next_page:
+                return redirect(next_page)
+            else:
+                return redirect('home')
+    return render_template('login.html', title='Login', form=form)
 
 
 @app.route('/registration', methods=['GET', 'POST'])
@@ -81,6 +106,7 @@ class Posts(db.Model):
 
 
 @app.route('/riddles', methods=['GET', 'POST'])
+@login_required
 def riddles():
     form = PostsForm()
     if form.validate_on_submit():
@@ -112,9 +138,21 @@ def create():
 @app.route('/delete')
 def delete():
     db.drop_all()  # drops all the schemas
-    #db.session.query(Posts).delete()  # deletes the contents of the table
+    # db.session.query(Posts).delete()  # deletes the contents of the table
     db.session.commit()
     return "everything is gone"
+
+
+@login_manager.user_loader
+def load_user(id):
+    return Users.query.get(int(id))
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
