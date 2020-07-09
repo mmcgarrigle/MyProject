@@ -82,11 +82,6 @@ def registration():
     return render_template('registration.html', title='Register', form=form)
 
 
-@app.route('/about')
-def about():
-    return render_template('about.html', title='About')
-
-
 class Posts(db.Model):
     userID = db.Column(db.Integer(), primary_key=True)
     q1 = db.Column(db.String(10), nullable=False)
