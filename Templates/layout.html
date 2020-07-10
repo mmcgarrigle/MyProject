@@ -15,6 +15,9 @@
             <a href="{{ url_for('logout') }}">Logout</a>
             <a href="{{ url_for('riddles') }}">Riddles</a>
             <a href="{{ url_for('account') }}">Account</a>
+        {% else %}
+			<a href="{{ url_for('home') }}">Home</a>
+
         {% endif %}
     </div>
     {% block body_content %}{% endblock %}

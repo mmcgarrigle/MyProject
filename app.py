@@ -39,7 +39,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
 
 class Posts(db.Model):
     userID = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    q1 = db.Column(db.String(10), primary_key=True, nullable=False)
+    q1 = db.Column(db.String(10), primary_key=True, nullable=False, unique=False)
     q2 = db.Column(db.String(10), nullable=False)
     q3 = db.Column(db.String(10), nullable=False)
     q4 = db.Column(db.String(10), nullable=False)
@@ -159,15 +159,21 @@ def riddles():
         )
         db.session.add(post_data)
         db.session.commit()
-        return redirect(url_for('registration'))
+        return redirect(url_for('complete'))
     else:
         return render_template('riddles.html', title='Add a post', form=form)
+
+
+@app.route('/complete')
+@login_required
+def complete():
+    return render_template('complete.html', title='Complete')
 
 
 @app.route('/create')
 def create():
     db.create_all()
-    post = Posts(q1='Paint', q2='Silence', q3='Shadow', q4="Match", q5='Short')
+    post = Posts(q1='Nonsense', q2='Nonsense', q3='Nonsense', q4="Nonsense", q5='Nonsense')
     post2 = Posts(q1='Blah', q2='Blah', q3='Blah', q4="Blah", q5='Blah')
     db.session.add(post)
     db.session.add(post2)
