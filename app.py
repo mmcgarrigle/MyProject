@@ -131,6 +131,20 @@ def account():
     return render_template('account.html', title='Account', form=form)
 
 
+@app.route("/account/delete", methods=["GET", "POST"])
+@login_required
+def account_delete():
+    user = current_user.id
+    posts = Posts.query.filter_by(userID=user)
+    for post in posts:
+        db.session.delete(post)
+    account = Users.query.filter_by(id=user).first()
+    logout_user()
+    db.session.delete(account)
+    db.session.commit()
+    return redirect(url_for('registration'))
+
+
 @app.route('/riddles', methods=['GET', 'POST'])
 @login_required
 def riddles():
