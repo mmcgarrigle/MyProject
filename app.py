@@ -39,7 +39,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
 
 class Posts(db.Model):
     userID = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    q1 = db.Column(db.String(10), primary_key=True, nullable=False, unique=False)
+    qSet = db.Column(db.Integer, primary_key=True)
+    q1 = db.Column(db.String(10), nullable=False)
     q2 = db.Column(db.String(10), nullable=False)
     q3 = db.Column(db.String(10), nullable=False)
     q4 = db.Column(db.String(10), nullable=False)
@@ -48,6 +49,7 @@ class Posts(db.Model):
     def __repr__(self):
         return ''.join(
             [
+                'Question_Set_ID: ', str(self.qSet), '\r\n',
                 'Answer1: ' + self.q1 + '\n'
                 'Answer2: ' + self.q2 + '\n'
                 'Answer3: ' + self.q3 + '\n'
@@ -123,7 +125,7 @@ def account():
         current_user.last_name = form.last_name.data
         current_user.email = form.email.data
         db.session.commit()
-        return redirect(url_for('account'))
+        return redirect(url_for('home'))
     elif request.method == 'GET':
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
