@@ -6,11 +6,11 @@
         <form method="post" action="">
             {{ form.hidden_tag() }}
             <div class="form-group">
-                {{ form.q1.label }}
-                {{ form.q1 }}
-                {% if form.q1.errors %}
+                {{ form.Ans1.label }}
+                {{ form.Ans1 }}
+                {% if form.Ans1.errors %}
                     <div class="error">
-                        {% for error in form.q1.errors %}
+                        {% for error in form.Ans1.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
@@ -18,11 +18,11 @@
             </div>
 
             <br>
-            {{ form.q2.label }}
-            {{ form.q2 }}
-            {% if form.q2.errors %}
+            {{ form.Ans2.label }}
+            {{ form.Ans2 }}
+            {% if form.Ans2.errors %}
                     <div class="error">
-                        {% for error in form.q2.errors %}
+                        {% for error in form.Ans2.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
@@ -30,24 +30,11 @@
             </div>
 
             <br>
-            {{ form.q3.label }}
-            {{ form.q3 }}
-            {% if form.q3.errors %}
+            {{ form.Ans3.label }}
+            {{ form.Ans3 }}
+            {% if form.Ans3.errors %}
                     <div class="error">
-                        {% for error in form.q3.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-
-            <br>
-            <br>
-            {{ form.q4.label }}
-            {{ form.q4 }}
-            {% if form.q4.errors %}
-                    <div class="error">
-                        {% for error in form.q4.errors %}
+                        {% for error in form.Ans3.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
@@ -56,11 +43,24 @@
 
             <br>
             <br>
-            {{ form.q5.label }}
-            {{ form.q5 }}
-            {% if form.q5.errors %}
+            {{ form.Ans4.label }}
+            {{ form.Ans4 }}
+            {% if form.Ans4.errors %}
                     <div class="error">
-                        {% for error in form.q5.errors %}
+                        {% for error in form.Ans4.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <br>
+            <br>
+            {{ form.Ans5.label }}
+            {{ form.Ans5 }}
+            {% if form.Ans5.errors %}
+                    <div class="error">
+                        {% for error in form.Ans5.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>

@@ -8,11 +8,10 @@ from flask_wtf import FlaskForm
 from wtforms.validators import required, ValidationError
 
 from accountforms import UpdateAccountForm
-from forms import PostsForm
+from riddlesforms import PostsForm
 from loginforms import LoginForm
 from regforms import RegistrationForm
 from flask_login import LoginManager, current_user, login_user, UserMixin, logout_user, login_required
-
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -38,23 +37,23 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
 
 
 class Posts(db.Model):
-    userID = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    userID = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     qSet = db.Column(db.Integer, primary_key=True)
-    q1 = db.Column(db.String(10), nullable=False)
-    q2 = db.Column(db.String(10), nullable=False)
-    q3 = db.Column(db.String(10), nullable=False)
-    q4 = db.Column(db.String(10), nullable=False)
-    q5 = db.Column(db.String(10), nullable=False)
+    Ans1 = db.Column(db.String(10), nullable=False)
+    Ans2 = db.Column(db.String(10), nullable=False)
+    Ans3 = db.Column(db.String(10), nullable=False)
+    Ans4 = db.Column(db.String(10), nullable=False)
+    Ans5 = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
         return ''.join(
             [
-                'Question_Set_ID: ', str(self.qSet), '\r\n',
-                'Answer1: ' + self.q1 + '\n'
-                'Answer2: ' + self.q2 + '\n'
-                'Answer3: ' + self.q3 + '\n'
-                'Answer4: ' + self.q4 + '\n'
-                'Answer5: ' + self.q5
+                'Question_Set: ', str(self.qSet), '\r\n',
+                'Answer1: ' + self.Ans1 + '\n'
+                                          'Answer2: ' + self.Ans2 + '\n'
+                                                                    'Answer3: ' + self.Ans3 + '\n'
+                                                                                              'Answer4: ' + self.Ans4 + '\n'
+                                                                                                                        'Answer5: ' + self.Ans5
             ]
         )
 
@@ -106,7 +105,8 @@ def registration():
     if form.validate_on_submit():
         hash_pw = bcrypt.generate_password_hash(form.password.data)
 
-        user = Users(email=form.email.data, password=hash_pw, first_name=form.first_name.data, last_name=form.last_name.data)
+        user = Users(email=form.email.data, password=hash_pw, first_name=form.first_name.data,
+                     last_name=form.last_name.data)
 
         db.session.add(user)
         db.session.commit()
@@ -153,11 +153,11 @@ def riddles():
     form = PostsForm()
     if form.validate_on_submit():
         post_data = Posts(
-            q1=form.q1.data,
-            q2=form.q2.data,
-            q3=form.q3.data,
-            q4=form.q4.data,
-            q5=form.q5.data
+            Ans1=form.q1.data,
+            Ans2=form.q2.data,
+            Ans3=form.q3.data,
+            Ans4=form.q4.data,
+            Ans5=form.q5.data
         )
         db.session.add(post_data)
         db.session.commit()
@@ -170,6 +170,9 @@ def riddles():
 @login_required
 def complete():
     return render_template('complete.html', title='Complete')
+
+
+
 
 
 @app.route('/create')
