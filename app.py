@@ -1,3 +1,5 @@
+import os
+
 import bcrypt
 from flask import Flask, redirect, url_for, request
 from flask import render_template
@@ -22,7 +24,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
+SECRET_KEY = os.urandom(16)
+app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
                                         environ.get('MYSQL_USER') + \
