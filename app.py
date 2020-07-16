@@ -24,8 +24,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-SECRET_KEY = os.urandom(16)
-app.config['SECRET_KEY'] = SECRET_KEY
+# SECRET_KEY = os.urandom(16)
+app.config['SECRET_KEY'] = 'f93f11ec0301ae1dedfa464e9209527d'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
                                         environ.get('MYSQL_USER') + \
