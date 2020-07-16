@@ -100,7 +100,7 @@ def login():
             if next_page:
                 return redirect(next_page)
             else:
-                return redirect('home')
+                return redirect('riddles')
     return render_template('login.html', title='Login', form=form)
 
 
