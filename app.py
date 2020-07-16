@@ -51,10 +51,10 @@ class Posts(db.Model):
             [
                 'User ID: ', self.user_id, '\r\n',
                 'Answer1: ' + self.q1 + '\n'
-                                        'Answer2: ' + self.q2 + '\n'
-                                                                'Answer3: ' + self.q3 + '\n'
-                                                                                        'Answer4: ' + self.q4 + '\n'
-                                                                                                                'Answer5: ' + self.q5
+                'Answer2: ' + self.q2 + '\n'
+                'Answer3: ' + self.q3 + '\n'
+                'Answer4: ' + self.q4 + '\n'
+                'Answer5: ' + self.q5
             ]
         )
 
@@ -177,7 +177,8 @@ def riddles():
 @app.route('/complete')
 @login_required
 def complete():
-    return render_template('complete.html', title='Complete')
+    post_data = Posts.query.filter_by(user_id=current_user.id).all()
+    return render_template('complete.html', title='Complete', posts=post_data)
 
 
 @app.route('/create')
