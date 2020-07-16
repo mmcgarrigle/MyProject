@@ -37,7 +37,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
 
 
 class Posts(db.Model):
-    userID = db.Column(db.Integer, primary_key=True)
+    postID = db.Column(db.Integer, primary_key=True)
     q1 = db.Column(db.String(10), nullable=False)
     q2 = db.Column(db.String(10), nullable=False)
     q3 = db.Column(db.String(10), nullable=False)
@@ -51,10 +51,10 @@ class Posts(db.Model):
             [
                 'User ID: ', self.user_id, '\r\n',
                 'Answer1: ' + self.q1 + '\n'
-                                        'Answer2: ' + self.q2 + '\n'
-                                                                'Answer3: ' + self.q3 + '\n'
-                                                                                        'Answer4: ' + self.q4 + '\n'
-                                                                                                                'Answer5: ' + self.q5
+                'Answer2: ' + self.q2 + '\n'
+                'Answer3: ' + self.q3 + '\n'
+                'Answer4: ' + self.q4 + '\n'
+                'Answer5: ' + self.q5
             ]
         )
 
@@ -143,7 +143,7 @@ def account():
 @login_required
 def account_delete():
     user = current_user.id
-    posts = Posts.query.filter_by(userID=user)
+    posts = Posts.query.filter_by(postID=user)
     for post in posts:
         db.session.delete(post)
     account = Users.query.filter_by(id=user).first()
@@ -158,13 +158,14 @@ def account_delete():
 def riddles():
     form = PostsForm()
     if form.validate_on_submit():
+        print(str(current_user.id) + '!!!!!!!!!!!')
         post_data = Posts(
             q1=form.q1.data,
             q2=form.q2.data,
             q3=form.q3.data,
             q4=form.q4.data,
             q5=form.q5.data,
-            usr=current_user
+            user_id=current_user.id
         )
         db.session.add(post_data)
         db.session.commit()
@@ -176,18 +177,13 @@ def riddles():
 @app.route('/complete')
 @login_required
 def complete():
-    return render_template('complete.html', title='Complete')
+    post_data = Posts.query.filter_by(user_id=current_user.id).all()
+    return render_template('complete.html', title='Complete', posts=post_data)
 
 
 @app.route('/create')
 def create():
     db.create_all()
-    post = Posts(userID='1', q1='Nonsense', q2='Nonsense', q3='Nonsense', q4="Nonsense", q5='Nonsense')
-    post2 = Posts(userID='2', q1='Blah', q2='Blah', q3='Blah', q4="Blah", q5='Blah')
-    post = Users(id='1', first_name='William', last_name='Wallace', email='bigchief@scot.com', password='Password1')
-    post2 = Users(id='2', first_name='Robert', last_name='Bruce', email='weebigchief@scot.com', password='Password2')
-    db.session.add(post)
-    db.session.add(post2)
     db.session.commit()
     return "Added the table and populated it with some records"
 
@@ -195,7 +191,6 @@ def create():
 @app.route('/delete')
 def delete():
     db.drop_all()  # drops all the schemas
-    # db.session.query(Posts).delete()  # deletes the contents of the table
     db.session.commit()
     return "everything is gone"
 

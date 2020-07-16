@@ -6,4 +6,43 @@
         You have given answers for all 5 riddles</h1>
 
     <h2>Let's see how you did!</h2>
+
+<h3>Your Answers:
+    <br>
+    <br>
+      {%  for post in posts %}
+            <div>
+                {{  post.user_ID }}
+                <b>1. </b>{{  post.q1 }}</p>
+                <p><b>2. </b>{{  post.q2 }}</p>
+                <p><b>3. </b>{{  post.q3 }}</p>
+                <p><b>4. </b>{{  post.q4 }}</p>
+                <p><b>5. </b>{{  post.q5 }}</p>
+            </div>
+         {%  endfor %}
+    <br>
+    <br>
+    Correct Answers:
+    <br>
+    <br>
+    1. Paint
+    <br>
+    <br>
+    2. Silence
+    <br>
+    <br>
+    3. Shadow
+    <br>
+    <br>
+    4. Match
+    <br>
+    <br>
+    5. Short
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+</h3>
 {% endblock %}
