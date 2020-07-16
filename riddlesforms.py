@@ -37,7 +37,7 @@ class PostsForm(FlaskForm):
     )
 
     q5 = StringField(
-        '5. What five letter word becomes shorter when you add to letters to it?',
+        '5. What five letter word becomes shorter when you add two letters to it?',
         validators=[
             DataRequired(),
             Length(min=1, max=10)
