@@ -47,7 +47,7 @@ class Posts(db.Model):
     q4 = db.Column(db.String(10), nullable=False)
     q5 = db.Column(db.String(10), nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
         return ''.join(
@@ -146,7 +146,7 @@ def account():
 @login_required
 def account_delete():
     user = current_user.id
-    posts = Posts.query.filter_by(postID=user)
+    posts = Posts.query.filter_by(user_id=user)
     for post in posts:
         db.session.delete(post)
     account = Users.query.filter_by(id=user).first()
