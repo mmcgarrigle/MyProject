@@ -172,16 +172,16 @@ def riddles():
         )
         db.session.add(post_data)
         db.session.commit()
-        return redirect(url_for('complete'))
+        return redirect(url_for('results'))
     else:
         return render_template('riddles.html', title='Add a post', form=form)
 
 
 @app.route('/complete')
 @login_required
-def complete():
+def results():
     post_data = Posts.query.filter_by(user_id=current_user.id).all()
-    return render_template('complete.html', title='Complete', posts=post_data)
+    return render_template('results.html', title='results', posts=post_data)
 
 
 @app.route('/create')
