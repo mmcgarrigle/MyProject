@@ -188,13 +188,13 @@ commercial.
 During the five weeks of training so far, while completing this project, I have used a number of sources to assist me in
 building my web app. They are as follows:
 
-Tadas Vaidotas - Principal Learning Specialist
-QA Community pages - modules and project brief
-IT Pro Portal (https://www.itproportal.com/) - Risk Assessments
-Stack Overflow (https://stackoverflow.com/) - Coding and syntax
-w3schools.com (https://www.w3schools.com/) - Coding and syntax
-imgur (https://imgur.com/) - Image cloud storage
-codecademy (https://www.codecademy.com/) - Coding and syntax
+Tadas Vaidotas - Principal Learning Specialist  
+QA Community pages - modules and project brief  
+IT Pro Portal (https://www.itproportal.com/) - Risk Assessments  
+Stack Overflow (https://stackoverflow.com/) - Coding and syntax  
+w3schools.com (https://www.w3schools.com/) - Coding and syntax  
+imgur (https://imgur.com/) - Image cloud storage  
+codecademy (https://www.codecademy.com/) - Coding and syntax  
 
 
 ###**Author**
