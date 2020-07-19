@@ -108,14 +108,27 @@ On a first visit, the customer would click the 'Register' link which would take 
 
 ![Imgur](https://i.imgur.com/ezP184u.jpg)
 
+The text boxes on the register page have rules applied to them and an error will be returned to the user if these are
+not adhered to:
+
+![Imgur](https://i.imgur.com/M5SC4UP.jpg)
+
 Upon completion of the registration form, which will push relevant data to the 'users' table in the DB, they will be
 asked to log in:
 
 ![Imgur](https://i.imgur.com/EoWo3Kn.jpg)
 
+Incorrect login details will also return errors to the user:
+
+![Imgur](https://i.imgur.com/0kOQIVR.jpg)
+
 Once logged in, the user will automatically be directed to the 'riddles' page where they will answer the questions set:
 
 ![Imgur](https://i.imgur.com/QlCAR27.jpg)
+
+All riddles must be answered, if any are left blank, the following error is returned:
+
+![Imgur](https://i.imgur.com/oMmpuHI.jpg)
 
 Clicking the 'Submit' button pushes the answers given into the 'posts' table in the DB and directs the user to the
 'results' page:
@@ -132,3 +145,58 @@ Updating user details will return the user to the 'home' page and deleting takes
 Logging out will return the user to the 'login' page.
 
 
+###**Risk Assessment**
+
+See below for an excerpt from my basic Risk Assessment:
+
+![Imgur](https://i.imgur.com/KJ2I83j.jpg)
+
+
+###**Lessons Learned**
+
+In terms of carrying out the brief for this project there are certainly some things which I feel have gone very
+well. I think that my end product as it stands meets all aspects of the brief but I think that my ability to stick to
+the timings set by my sprints has worked very well for me, ensuring I kept up a good, measured pace throughout and
+nothing has been left until the last minute to be completed.
+
+I did have some difficulties throughout the project and these did threaten to hamper my progress at times. For the first
+couple of weeks in particular, I had a tendency to over-complicate things, especially with regards to Python coding but
+once I was able to get past that, things seemed to run a lot more smoothly. I also had an issue after a Microsoft update
+of Edge which seemed to stop the Firewall rules I set up on GCP from working and I had to effectively disable the
+firewall altogether to get my web app running from Linux and for Jenkins to work correctly.
+
+In retrospect, the biggest thing I would have done differently would be to go beyond the pre-course work for Python in 
+particular. This would maybe have allowed me to have a firmer grasp of it going into the training and starting the
+project and would therefore have mitigated the issues I had initially.
+
+The biggest learnings I will take from carrying out this project are to keep things simple and to be more confident of
+the work I've done. I'm happy that I have learned to break things down to more manageable tasks and keep them simple now
+and I am very proud of what I have achieved in this 5 week period having had no experience of programming languages
+previously.
+
+
+###**Next Steps For Riddle-Me-This**
+
+Given more time to work on this project, I would like to add the functionality to allow the riddles posted to be changed
+on a weekly basis. I would like to have it track user scores over a period of time and use these to create a leaderboard
+to create competition between users. I would also carry out some formatting to make the app look more professional and
+commercial.
+
+
+###**Acknowledgements**
+
+During the five weeks of training so far, while completing this project, I have used a number of sources to assist me in
+building my web app. They are as follows:
+
+Tadas Vaidotas - Principal Learning Specialist
+QA Community pages - modules and project brief
+IT Pro Portal (https://www.itproportal.com/) - Risk Assessments
+Stack Overflow (https://stackoverflow.com/) - Coding and syntax
+w3schools.com (https://www.w3schools.com/) - Coding and syntax
+imgur (https://imgur.com/) - Image cloud storage
+codecademy (https://www.codecademy.com/) - Coding and syntax
+
+
+###**Author**
+
+Michael McGarrigle
