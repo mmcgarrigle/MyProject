@@ -61,7 +61,7 @@ stories and how Agile sprints were used to set timescales for completion against
 
 To cover the requirement on using a relational database, I designed the following tables:
 
-![Tables](https://onedrive.live.com/?cid=10082C236ED5B987&id=10082C236ED5B987%215178&parId=10082C236ED5B987%21105&o=OneUp)
+![Tables](https://onedrive.live.com/?cid=10082C236ED5B987&id=10082C236ED5B987%215179&parId=10082C236ED5B987%21105&o=OneUp)
 
 As you can see from the diagram above, the relationship between these tables comes from the UserID in the 'posts' table
 and the ID in the 'users' table.
