@@ -52,16 +52,16 @@ The User Stories for this project were as follows:
 The images below show how these user stories had the MoSCoW Method applied, the tasks created to answer these user
 stories and how Agile sprints were used to set timescales for completion against groups of tasks.
 
-![Trello1]([Imgur](https://i.imgur.com/HWD9pad.png))
+![Imgur](https://i.imgur.com/HWD9pad.png)
 
-![Trello2]([Imgur](https://i.imgur.com/SSWIfME.png))
+![Imgur](https://i.imgur.com/SSWIfME.png)
 
 
 **Database**
 
 To cover the requirement on using a relational database, I designed the following tables:
 
-![Tables]([Imgur](https://i.imgur.com/G8oY5x0.png))
+![Imgur](https://i.imgur.com/G8oY5x0.png)
 
 As you can see from the diagram above, the relationship between these tables comes from the UserID in the 'posts' table
 and the ID in the 'users' table.
