@@ -177,7 +177,7 @@ def riddles():
         return render_template('riddles.html', title='Add a post', form=form)
 
 
-@app.route('/complete')
+@app.route('/results')
 @login_required
 def results():
     post_data = Posts.query.filter_by(user_id=current_user.id).all()
