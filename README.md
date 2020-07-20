@@ -100,6 +100,8 @@ As you can see from the diagram, the process is as follows:
 
 ###**Front-End Design**
 
+web app can be accessed on the following url: http://35.246.58.211/
+
 The first page a user will see upon reaching the site is the homepage:
 
 ![Imgur](https://i.imgur.com/Cq1RFgw.jpg)
